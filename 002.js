@@ -117,8 +117,59 @@ while (counter < 10) {
 console.log(result);
 
 
-console.log("-".repeat(20))
+console.log("-".repeat(10))
 // Do loop
 // difference between do and while:
 // do-loop always executes its body at least once,
 // and it starts testing whether it should stop only after that first executaion
+
+
+// The following code will force you to get an input
+let yourName;
+do {
+    yourName = "Spencer"; // replace this with input prompt
+} while (!yourName);
+console.log(yourName);
+
+console.log("-".repeat(10))
+
+
+// Indentation:
+if (false != true) {
+    console.log("That makes sense.");
+    if (1 < 2) {
+        console.log("No surprise there.");
+    }
+}
+
+
+console.log("-".repeat(10));
+
+// for loop
+for (let number = 0; number <= 12; number = number + 2){
+    console.log(number);
+}
+
+console.log("Another Example--->")
+// another example
+let result2 = 1;
+// Python: for i in range(0, 10, 1)
+for (let c = 0; c < 10; c = c + 1) {
+    result2 = result2 * 2;
+}
+console.log(result2);
+
+// Breaking out of a loop
+console.log("Do it until it can be devided by 7, starting in 20")
+for (let current = 20; ; current = current + 1) {
+    if (current % 7 == 0) {
+        console.log(current);
+        break;
+    }
+}
+
+
+console.log('-'.repeat(10));
+
+// Updating bindings succinctly
+count = count + 1;
