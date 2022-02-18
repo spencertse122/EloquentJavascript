@@ -36,12 +36,41 @@ const halve = function(n) {
 let n = 10;
 console.log(halve(100));
 
-// nested scope
+// nested scope (function of a function)
 const hummus = function(factor) {
     const ingredient = function(amount, unit, name) {
-        let ingredientAount = amount * factor;
-        if (ingredientAount > 1) {
-            
+        let ingredientAmount = amount * factor;
+        if (ingredientAmount > 1) {
+            unit += "s";
         }
-    }
+        console.log(`${ingredientAmount} ${unit} ${name}`)
+    };
+    ingredient(1, "can", "chickpeas");
+    ingredient(0.25, "cup", "tahini");
+    ingredient(0.25, "cup", "lemon juice");
+    ingredient(1, "clove", "garlic");
+    ingredient(2, "tablespoon", "olive oil");
+    ingredient(0.5, "teaspoon", "cumin");
+};
+
+
+hummus(3)
+
+
+// functions as values
+// let launchMissiles = function() {
+//     missileSystem.launch("now");
+// };
+// if (safeMode) {
+//     launchMissiles = function() {/* do nothing */};
+// }
+
+function square2(x) {
+    return x * x;
+}
+
+console.log("The future says:", future());
+
+function future() {
+    return "You'll never have flying cars";
 }
