@@ -74,3 +74,39 @@ console.log("The future says:", future());
 function future() {
     return "You'll never have flying cars";
 }
+
+// Arrow functions
+const power = (base, exponent) => {
+    let result = 1;
+    for (let count = 0; count < exponent; count++) {
+        result *= base;
+    }
+    return result;
+};
+
+// more on chapter 6 for why we use arrow function
+const square1 = (x) => { return x * x; };
+// below only works in JS, not node
+// const square2 = x => x * x;
+
+const horn = () => {
+    console.log("Toot");
+};
+
+// the call stack
+function greet(who) {
+    console.log("Hello " + who);
+}
+
+greet("Harry");
+console.log("Bye");
+
+// This is not going to run because of the infinite recursion
+// function chicken() {
+//     return egg();
+// }
+// function egg() {
+//     return chicken();
+// }
+// console.log(chicken() + " came first. ")
+
