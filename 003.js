@@ -110,3 +110,15 @@ console.log("Bye");
 // }
 // console.log(chicken() + " came first. ")
 
+// optional arguments
+function squareEasy(x) { return x * x; }
+console.log(squareEasy(4, true, "hedgehog"));
+
+function minus(a, b) {
+    if (b === undefined) return -a;
+    else return a - b;
+}
+
+console.log(minus(10));
+console.log(minus(10, 5));
+console.log(minus(5, 20))
