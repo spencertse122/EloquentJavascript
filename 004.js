@@ -78,3 +78,38 @@ let journal = [
 ];
 
 console.log(journal)
+
+console.log("-".repeat(10))
+
+// mutability
+let object1 = {value: 10};
+let object2 = object1;
+let object3 = {value: 10};
+
+console.log(object1 == object2);
+console.log(object1 == object3);
+
+object1.value = 15;
+console.log(object2.value);
+console.log(object3.value)
+
+console.log("-".repeat(10))
+
+const score = {visitors: 0, home: 0};
+score.visitors = 1;
+// score = {visitors: 1, home: 1}
+console.log(score)
+
+console.log("-".repeat(10))
+// The lycanthrope's log
+
+let journal2 = []
+function addEntry(events, squirrel) {
+    journal2.push({events, squirrel})
+}
+
+addEntry(["work", "touched tree", "pizza", "running", "television"], false)
+addEntry(["work", "ice cream", "cauliflower", "lasagna", "touched tree", "brushed teeth"], false)
+addEntry(["weekend", "cycling", "break", "peanuts", "beer"], true)
+
+console.log(journal2)
