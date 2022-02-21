@@ -16,10 +16,21 @@ console.log(customSum(1,10))
 
 function customRange(start, end) {
     outputList = []
-    for (num = start)
+    for (num = start; num <= end; num++) {
+        outputList.push(num)
+    }
+    return outputList
 }
 
+function sum([...numbers]) {
+    outputSum = 0
+    for (let num of numbers) {
+        outputSum += num
+    }
+    return outputSum
+}
 
+console.log(sum(customRange(1, 10)))
 
 // As a bonus assignment, modify your range function to take an optional third
 // argument that indicates the “step” value used when building the array. If no
