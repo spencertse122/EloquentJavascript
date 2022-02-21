@@ -110,6 +110,14 @@ function tableFor(event, journal) {
   return table;
 }
 
+ 
+function phi(table) {
+  return (table[3] * table[0] - table[2] * table[1]) / 
+      Math.sqrt((table[2] + table[3]) *
+                (table[0] + table[1]) *
+                (table[1] + table[3]) * 
+                (table[0] + table[2]))
+}
 console.log(tableFor("pizza", JOURNAL))
 
 // special loop
@@ -121,7 +129,7 @@ for (let entry of JOURNAL) {
 // final analysis
 
 function journalEvents(journal) {
-  let events = []
+  let events = [] // unique events
   for (let entry of journal) {
     for (let event of entry.events) {
       if (!events.includes(event)) {
@@ -133,3 +141,29 @@ function journalEvents(journal) {
 }
 
 console.log(journalEvents(JOURNAL));
+console.log('-'.repeat(10))
+
+for (let event of journalEvents(JOURNAL)) {
+  console.log(event + ":", phi(tableFor(event, JOURNAL)));
+}
+
+console.log('-'.repeat(10))
+
+console.log("even better version>>>")
+
+for (let event of journalEvents(JOURNAL)) {
+  let correlation = phi(tableFor(event, JOURNAL));
+  if (correlation > 0.1 || correlation < -0.1) {
+    console.log(event + ":", correlation);
+  }
+}
+
+// looks like there's a stronger correlation in peanuts and 
+// brush teeth 
+
+for (let entry of JOURNAL) {
+  if (entry.events.includes("peanuts") &&
+      !entry.events.includes("brushed teeth")) {
+    entry.events.push("peanut teeth");
+      }
+}
