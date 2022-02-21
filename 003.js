@@ -161,7 +161,7 @@ console.log("use 5 inside twice()", twice(5))
 console.log("use 10 inside twice()", twice(10))
 
 // Recursion
-function power33(base, exponent) {
+function power(base, exponent) {
     if (exponent == 0) {
         return 1;
     } else {
@@ -180,93 +180,5 @@ console.log(power(2, 3))
 // then adding 5 twice, whereas the number 15 cannot be reached at all.
 
 function findSolution(target) {
-    function find(current, history) {
-        if (current == target) {
-            return history;
-        } else if (current > target) {
-            // console.log(`current is ${current} and target is ${target}, history is ${history}`)
-            return null;
-        } else {
-            return find(current + 5, `(${history} + 5)`) ||
-                   find(current * 3, `(${history} * 3)`); 
-        }
-    }
-    return find(1, "1");
+    
 }
-
-console.log("-".repeat(10))
-console.log("Looking for a 4", findSolution(4));
-console.log("-".repeat(10))
-console.log("Looking for a 24", findSolution(24))
-
-// Growing functions
-console.log("-".repeat(10))
-console.log("Growing function >>>>>")
-
-// This is unscalable version
-function printFarmInventory(cows, chickens) {
-    let cowString = String(cows);
-    while (cowString.length < 3) {
-        cowString = "0" + cowString;
-    }
-    console.log(`${cowString} cows`);
-    let chickenString = String(chickens);
-    while (chickenString.length < 3) {
-        chickenString = "0" + chickenString;
-    }
-    console.log(`${chickenString} Chickens`)
-}
-
-printFarmInventory(7, 11)
-
-
-console.log("-".repeat(10))
-console.log("Using the scalable version >>>>")
-
-// This is scalable version
-function printZeroPaddedWithLabel(number, label) {
-    let numberString = String(number);
-    while (numberString.length < 3) {
-        numberString = "0" + numberString;
-    }
-    console.log(`${numberString} ${label}`)
-}
-
-function printFarmInventory2(cows, chickens, pigs) {
-    printZeroPaddedWithLabel(cows, "Cows");
-    printZeroPaddedWithLabel(chickens, "Chickens");
-    printZeroPaddedWithLabel(pigs, "Pigs");
-}
-
-printFarmInventory2(7, 11, 3)
-
-console.log("-".repeat(10))
-console.log("cleaning up the zero pad function>>>")
-
-// This is even more readable, using zeroPad as fuction name
-// one function only does one thing
-function zeroPad(number, width) {
-    let string = String(number);
-    while (string.length < width) {
-        string = "0" + string;
-    }
-    return string;
-}
-
-// and we simplified the big guy using the built-in console.log
-function printFarmInventory3(cows, chickens, pigs) {
-    console.log(`${zeroPad(cows, 3)} Cows`);
-    console.log(`${zeroPad(chickens, 3)} Chickens`);
-    console.log(`${zeroPad(pigs, 3)} Pigs`);
-}
-
-printFarmInventory3(7, 16,3)
-
-
-// A pure function is a specific kind of value-producing function that not only 
-// has no siode effects but also doesn't rely on side effects from other code
-
-// a call to such function can be substituted by its return value 
-// without changing the meaning of the code
-
-

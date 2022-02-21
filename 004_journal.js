@@ -167,3 +167,19 @@ for (let entry of JOURNAL) {
     entry.events.push("peanut teeth");
       }
 }
+
+console.log(phi(tableFor("peanut teeth", JOURNAL)))
+
+
+console.log('-'.repeat(10))
+
+// this function will automatically unpack the values
+function phi2([n00, n01, n10, n11]) {
+  return (n11 * n00 - n10 * n11) / 
+    Math.sqrt((n10 + n11) * (n00 + n01) *
+              (n01 + n11) * (n00 + n10))
+}
+
+console.log(phi2(tableFor("peanut teeth", JOURNAL)))
+
+

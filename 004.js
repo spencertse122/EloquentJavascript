@@ -156,3 +156,106 @@ for (let entry of journal) {
 }
 
 
+
+console.log("-".repeat(10))
+
+
+
+// more array
+
+console.log([1,2,3,2,1].indexOf(2)) // ----> index 1 is the first 2
+console.log([1,2,3,2,1].lastIndexOf(2)) // ---> index 3 is the last 2
+
+console.log([0,1,2,3,4].slice(2, 4)); //---> from index 2 to index 4 (4 is exclusive)
+console.log([0,1,2,3,4].slice(2)) //----> from index 2 to the end
+
+
+// concat and slice in action
+
+function remove(array, index) {
+    return array.slice(0, index)
+      .concat(array.slice(index + 1))
+}
+
+console.log(remove(["a", "b", "c", "d", "e"], 2));
+
+console.log(remove(["a", "b", "c", "d", "e"], 3));
+
+console.log('-'.repeat(10))
+// Strings and their properties
+let kim = "KIM"
+kim.age == 88;
+console.log(kim.age)
+
+console.log("coconuts".slice(4, 7)) //----> nut (from index 4 to 6)
+console.log("coconut".indexOf("u"))
+
+
+
+console.log("one two three".indexOf("ee")) ///return 11 because "ee" starts at 11
+console.log("    okay \n".trim()) // in python it's strip() instead of trim()
+
+// converting number 6 into a string, then pad it into 3 digits, with 0s
+console.log(String(6).padStart(3, "0"))
+
+console.log('-'.repeat(10))
+
+// spliy a string on every occurence of another string
+
+let sentence = "Secretarybirds specialize in stomping."
+let words = sentence.split(" ") // same as python
+console.log(words)
+
+console.log(words.join(". ")) // same as python join
+
+console.log("LA".repeat(3))
+
+// another example of getting length of a string and indexing
+let string = "abc"
+console.log(string.length) // length should be 3
+console.log(string[1]) // index 1 is b
+
+// rest parameters
+// example making Math.max
+
+function max(...numbers) {
+    let result = -Infinity;
+    for (let number of numbers) {
+        if (number > result) result = number;
+    }
+    return result;
+}
+
+console.log(max(4, 1, 9, -2))
+console.log('-'.repeat(10))
+
+let numbers = [5,1,7]
+console.log(max(...numbers))
+
+
+console.log(max(9, ...numbers, 2))
+
+console.log("-".repeat(10))
+
+
+// another example with words
+let words2 = ["never", "fully"]
+console.log(["will", ...words2, "understand"])
+
+// Math object
+function randomPointOnCircle(radius) {
+    let angle = Math.random() * 2 * Math.PI;
+    return {x : radius * Math.cos(angle),
+            y : radius * Math.sin(angle)};
+    }
+    console.log(randomPointOnCircle(2))
+
+
+console.log(Math.random())
+console.log(Math.random())
+console.log("Math.floor(Math.random() * 10) ------>", Math.floor(Math.random() * 10))
+
+
+// binding values in an array
+let {name} = {name: "Faraji", age: 23}
+console.log(name)
