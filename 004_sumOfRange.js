@@ -40,3 +40,19 @@ console.log(sum(customRange(1, 10)))
 // produces [5, 4, 3, 2].
 
 // function custom_range2(start, end)
+
+function custom_range2(start, end, step = start < end ? 1 : -1) {
+    outputList = []
+    if (start < end) {
+        for (num = start; num <=end; num += step) {
+        outputList.push(num)
+        }
+    } else {
+        for (num = start; num >= end; num += step) {
+            outputList.push(num)
+        }
+    }
+    return outputList
+}
+
+console.log(custom_range2(10, 1, -2))
