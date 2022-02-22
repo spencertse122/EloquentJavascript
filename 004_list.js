@@ -30,3 +30,46 @@ function ArrayToList(AnArray) {
 }
 
 console.log(ArrayToList([1,2,3,4,5,6,7,8,9]))
+
+
+console.log("-".repeat(10)) 
+console.log("ANSWER: ")
+
+// answer to arraytolist
+function arrayToList2(array) {
+    let list = null;
+    for (let i = array.length - 1; i >= 0; i--){
+        list = {value: array[i], rest: list}
+    }
+    return list
+}
+
+console.log(arrayToList2([1,2,3,4,5,6,7,8,9])) 
+
+// ListToArray
+function listToArray(AList) {
+    let outputArray = []
+    for (let node = AList ; node ; node = node.rest) {
+        outputArray.push(node.value)
+    }
+    return outputArray
+}
+
+console.log(listToArray(arrayToList2([1,2,3,4,5,6,7,8,9])))
+
+// prepend function
+function prepend(value, list) {
+    return {value, rest: list}
+}
+
+// function nth ----> this is usinsg recursion
+function nth(List, n) {
+    if (!List) return undefined;
+    else if (n == 0) return List.value
+    else return nth(List.rest, n-1)
+}
+
+console.log(prepend(10, prepend(20, null)))
+console.log(nth(arrayToList2([10, 20, 30]), 1))
+
+
