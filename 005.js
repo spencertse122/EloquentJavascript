@@ -93,3 +93,85 @@ let greaterThan10 = greaterThan(10);
 console.log(greaterThan(10));
 
 console.log(greaterThan10(13))
+
+console.log('-'.repeat(10))
+
+function noisy(f) {
+    // returns a function that takes in any numbers of arguments
+    return (...args) => {
+        console.log("calling with", args); // first printing each argument on screen with "calling with"
+        let result = f(...args); // and then using the f function to run through all the input arguments
+        console.log("called with", args, ", returned", result); 
+        return result;
+    };
+}
+
+
+
+noisy(Math.min)(3, 2, 1);
+
+function unless(test, then) {
+    if (!test) then();
+}
+
+repeat(3, n => {
+    unless(n % 2 == 1, () => {
+        console.log(n, "is even");
+    });
+});
+
+
+function filter(array, test) {
+    let passed = [];
+    for (let element of array) {
+        if (test(element)) {
+            passed.push(element);
+        }
+    }
+    return passed;
+}
+
+// transforming with map
+
+function map(array, transform) {
+    let mapped = [];
+    for (let element of array) {
+        mapped.push(transform(element));
+    }
+    return mapped;
+}
+
+// let rtlScripts = SCRIPTS.filter(s => s.direction == "rtl");
+
+// below function is going to extract the names from the array
+// console.log(map(rtlScripts, s => s.name));
+
+
+// Summarizing with reduce/fold
+
+// start with a reduce function that takes in an array, the way it combines, and starting value
+function reduce(array, combine, start) {
+    let current = start; // initiate local variable current as the start
+    // starting the iteration
+    for (let element of array) { // for i in array:
+        current = combine(current, element); // current = combine current value and i with the combining function
+    }
+    return current;
+}
+
+console.log(reduce([1,2,3,4], (a, b) => a + b, 0));
+
+// the above example is just the standard reduce
+
+console.log('-'.repeat(10))
+
+function characterCount(script) {
+    return script.ranges.reduce((count, [from, to]) => {
+        return count + (to - from);
+    }, 0);
+}
+
+// console.log(SCRIPTS.reduce((a, b) => {
+//     return characterCount(a) < characterCount(b) ? b : a;
+// }));
+
