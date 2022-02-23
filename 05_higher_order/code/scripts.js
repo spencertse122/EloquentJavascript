@@ -1121,3 +1121,73 @@ if (typeof module != "undefined" && module.exports && (typeof window == "undefin
   module.exports = SCRIPTS;
 if (typeof global != "undefined" && !global.SCRIPTS)
   global.SCRIPTS = SCRIPTS;
+
+
+
+
+
+// Composability
+function characterCount(script) {
+  return script.ranges.reduce((count, [from, to]) => {
+      return count + (to - from);
+  }, 0);
+}
+
+let biggest = null; // initiate biggest as a null value object
+for (let script of SCRIPTS) { // for i in scripts:
+    if (biggest == null || // if biggest is null or 
+        characterCount(biggest) < characterCount(script)) { // doing a character count comparison
+            biggest = script; // replace the biggest with the current looping item
+        }
+}
+
+
+console.log(biggest)
+
+
+
+console.log('-'.repeat(10))
+
+
+// Average function
+function average(array) {
+  return array.reduce((a, b) => a + b) / array.length; // so they reduced it BEFORE dividing, 
+  // the division function is AFTER the reduction
+}
+
+console.log(Math.round(average(
+  SCRIPTS.filter(s => s.living).map(s => s.year))));
+
+console.log(Math.round(average(
+  SCRIPTS.filter(s => !s.living).map(s => s.year))));
+
+
+
+
+// Alternative way to achieve the samething with a big loop
+let total = 0, count = 0;
+for (let script of SCRIPTS) {
+  if (script.living) {
+    total += script.year;
+    count += 1;
+  }
+}
+
+console.log(Math.round(total / count));
+console.log('-'.repeat(10))
+
+
+// String and Character Codes
+function characterScript(code) {
+  for (let script of SCRIPTS) {
+    if (script.ranges.some(([from, to]) => {
+      return code >= from && code < to;
+    })) {
+      return script;
+    }
+  }
+  return null;
+}
+
+console.log(characterScript(121))
+

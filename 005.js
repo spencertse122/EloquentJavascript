@@ -175,3 +175,25 @@ function characterCount(script) {
 //     return characterCount(a) < characterCount(b) ? b : a;
 // }));
 
+
+
+
+// Composability
+// let biggest = null; // initiate biggest as a null value object
+// for (let script of SCRIPTS) { // for i in scripts:
+//     if (biggest == null || // if biggest is null or 
+//         characterCount(biggest) < characterCount(script)) { // doing a character count comparison
+//             biggest = script; // replace the biggest with the current looping item
+//         }
+// }
+
+
+
+// REFER TO SCRIPTS.JS ^^^^^^^^
+
+
+
+
+
+
+
