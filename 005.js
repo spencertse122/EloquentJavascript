@@ -193,7 +193,63 @@ function characterCount(script) {
 
 
 
+console.log('-'.repeat(10))
+
+let horseShoe = "🐴👟";
+console.log(horseShoe.length);
+
+console.log(horseShoe[0]);
+console.log(horseShoe.charCodeAt(0))
+console.log(horseShoe.codePointAt(0))
+
+// JavaScript's charCodeAt method gives you a code unit, not a full character
+// codSo we could use that to get characters from a string. But the argument passed to codePointAt
+// is still an index into the sequence of code units. 
+// So to run over all characters in a string, we'd still need to deal with the question
+// of whether a character takes up one or two code units.
+
+
+let roseDragon = "🌹🐉";
+for (let char of roseDragon) {
+    console.log(char);
+}
+
+
+console.log('-'.repeat(10))
+
+// Recognizing text
+function countBy(items, groupName) {
+    let counts = []; // initiating an empty array
+    for (let item of items) { // for each item in the items array
+        let name = groupName(item); // utilize the groupName function on the item
+        let known = counts.findIndex(c => c.name == name); 
+        if (known == -1) {
+            counts.push({name, count: 1}); // if we do NOT find the category name, make it 1
+        } else {
+            counts[known].count++; // if the category name exists, add to count
+        }
+    }
+    return counts;
+}
+
+console.log(countBy([1, 2, 3, 4, 5], n => n > 2? "greater than 2":"Less than 2"));
+
+console.log('-'.repeat(10))
 
 
 
+function textScripts(text) {
+    let scripts = countBy(text, char => {
+        let script = characterScript(char.codePointAt(0));
+        return script ? script.name : "none";
+    }).filter(({name}) => name != "none");
 
+    let total = scripts.reduce((n, {count}) => n + count, 0);
+    if (total == 0) return "No scripts found";
+
+    return scripts.map(({name, count}) => {
+        return `${Math.round(count * 100 / total)}% ${name}`;
+    }).join(", ");
+}
+
+console.log(textScripts('英国的狗说"woof", 俄罗斯的狗说"тяв"'));

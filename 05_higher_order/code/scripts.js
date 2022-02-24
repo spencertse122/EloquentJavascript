@@ -1191,3 +1191,33 @@ function characterScript(code) {
 
 console.log(characterScript(121))
 
+console.log('-'.repeat(10))
+function countBy(items, groupName) {
+  let counts = []; // initiating an empty array
+  for (let item of items) { // for each item in the items array
+      let name = groupName(item); // utilize the groupName function on the item
+      let known = counts.findIndex(c => c.name == name); 
+      if (known == -1) {
+          counts.push({name, count: 1}); // if we do NOT find the category name, make it 1
+      } else {
+          counts[known].count++; // if the category name exists, add to count
+      }
+  }
+  return counts;
+}
+
+function textScripts(text) {
+  let scripts = countBy(text, char => {
+      let script = characterScript(char.codePointAt(0));
+      return script ? script.name : "none";
+  }).filter(({name}) => name != "none");
+
+  let total = scripts.reduce((n, {count}) => n + count, 0);
+  if (total == 0) return "No scripts found";
+
+  return scripts.map(({name, count}) => {
+      return `${Math.round(count * 100 / total)}% ${name}`;
+  }).join(", ");
+}
+
+console.log(textScripts('英国的狗说"woof", 俄罗斯的狗说"тяв"'));
