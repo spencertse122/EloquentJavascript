@@ -49,3 +49,49 @@ console.log('-'.repeat(10))
 console.log(Object.getPrototypeOf({}) == 
             Object.prototype);
 
+console.log(Object.getPrototypeOf([]) ==
+            Array.prototype)
+
+console.log(Object.getPrototypeOf(Math.max) == 
+            Function.prototype)
+
+console.log(Object.getPrototypeOf([]) ==
+            Array.prototype)
+
+console.log('-'.repeat(10))
+
+// Real Prototype example
+let protoRabbit = {
+    speak(line) {
+        console.log(`The ${this.type} rabbit says '${line}'`);
+    }
+}
+let killerRabbit = Object.create(protoRabbit)
+killerRabbit.type = "killer";
+killerRabbit.speak("SKREEEE!")
+
+console.log('-'.repeat(10))
+
+// Classes
+function makeRabbit(type) {
+    let rabbit = Object.create(protoRabbit);
+    rabbit.type = type 
+    return rabbit
+}
+// ----------------------------------------------
+
+// Using new instead 
+function Rabbit(type) {
+    this.type = type;
+}
+
+Rabbit.prototype.speak = function(line) {
+    console.log(`The ${this.type} rabbit says '${line}'`)
+}
+
+
+// using the object
+let weirdRabbit = new Rabbit("weird ass")
+weirdRabbit.speak("fuck")
+
+// --------------------------------------------------------------
