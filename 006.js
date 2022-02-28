@@ -131,3 +131,30 @@ console.log("blackRabbit2 checking", blackRabbit2.teeth)
 console.log("class template value", ClassRabbit.prototype.teeth)
 
 
+console.log('-'.repeat(10))
+console.log(Array.prototype.toString ==
+            Object.prototype.toString) // these two are different tostring methods
+
+console.log([1, 2].toString())
+console.log(Object.prototype.toString.call([1, 2]))// using the regular tostring will get us a different level
+
+
+console.log('-'.repeat(10))
+
+
+// ----------------------------------------
+
+// Maps
+// Maps is a data structure like dictionary in Python
+
+
+let ages = {
+    Boris: 39,
+    Liang: 22, 
+    Julia: 62
+}
+
+
+console.log(`Julia is ${ages["Julia"]}`)
+console.log("Is Jack's age known?", "Jack" in ages)
+console.log("Is toString's age known?", "toString" in ages)
