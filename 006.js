@@ -113,3 +113,21 @@ let blackRabbit2 = new ClassRabbit("black")
 
 
 killerRabbit2.speak("WHEEEE")
+
+let object = new class { getWord() {return "hello"}}
+console.log(object.getWord())
+
+console.log('-'.repeat(10))
+
+
+// overriding derived properties
+ClassRabbit.prototype.teeth = "small" // setting the ClassRabbit teeth variable as small
+console.log("killerRabbit2 original", killerRabbit2.teeth)
+
+killerRabbit2.teeth = "long, sharp, and bloody"
+console.log("killerRabbit2 after changes", killerRabbit2.teeth)
+
+console.log("blackRabbit2 checking", blackRabbit2.teeth)
+console.log("class template value", ClassRabbit.prototype.teeth)
+
+
