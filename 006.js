@@ -94,4 +94,22 @@ Rabbit.prototype.speak = function(line) {
 let weirdRabbit = new Rabbit("weird ass")
 weirdRabbit.speak("fuck")
 
+console.log('-'.repeat(10))
 // --------------------------------------------------------------
+
+// Class Notation
+
+class ClassRabbit {
+    constructor(type) {
+        this.type = type;
+    }
+    speak(line) {
+        console.log(`The ${this.type} rabbit says '${line}'`)
+    }
+}
+
+let killerRabbit2 = new ClassRabbit("killer")
+let blackRabbit2 = new ClassRabbit("black")
+
+
+killerRabbit2.speak("WHEEEE")
