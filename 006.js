@@ -213,3 +213,40 @@ let stringObject = {
     [toStringSymbol]() { return "a jute rope"}
 }
 console.log(stringObject[toStringSymbol]())
+
+
+// The iterator interface
+// next, value, done
+
+let okIterator = "OK"[Symbol.iterator]()
+console.log(okIterator.next())
+console.log(okIterator.next())
+console.log(okIterator.next())
+
+console.log('-'.repeat(10))
+
+// implement an iterable data structure
+// Matrix class
+
+class Matrix {
+    constructor(eidth, height, element = (x, y) => undefined) {
+        this.width = width;
+        this.height = height
+        this.content = []
+
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < this.width; x++) {
+                this.content[y * width + x] = element(x, y)
+            }
+        }
+    }
+
+    get(x, y) {
+        return this.content[y * this.width + x]
+    }
+
+    set(x, y, value) {
+        this.content[y * this.width + x] = value
+    }
+}
+
