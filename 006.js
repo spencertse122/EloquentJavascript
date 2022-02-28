@@ -158,3 +158,58 @@ let ages = {
 console.log(`Julia is ${ages["Julia"]}`)
 console.log("Is Jack's age known?", "Jack" in ages)
 console.log("Is toString's age known?", "toString" in ages)
+
+
+console.log('-'.repeat(10))
+
+// initiate empty dictionary
+let ages2 = new Map()
+ages2.set("Boris", 39)
+ages2.set("Liang", 22)
+ages2.set("Julia", 62)
+
+
+console.log(`Julia is ${ages2.get("Julia")}`)
+console.log("Is Jack's age known?", ages2.has("Jack"))
+console.log(ages2.has("toString"))
+
+// use set(), get(), has() instead of the indexing
+console.log('-'.repeat(10))
+console.log({x:1}.hasOwnProperty("x"))
+console.log({x:1}.hasOwnProperty("toString"))
+
+
+console.log('-'.repeat(10))
+
+
+// Polymorphism
+ClassRabbit.prototype.toString = function() {
+    return `a ${this.type} rabbit`
+}
+
+console.log(String(blackRabbit2))
+
+console.log('-'.repeat(10))
+
+
+// Symbols
+// this is to prevent multiple variables with the same name
+let sym = Symbol("name")
+console.log(sym == Symbol("name"))
+
+ClassRabbit.prototype[sym] = 55
+console.log(blackRabbit2[sym])
+
+const toStringSymbol = Symbol("toString")
+Array.prototype[toStringSymbol] = function() {
+    return `${this.length} cm of blue yarn.`
+}
+
+
+console.log([1, 2].toString())
+console.log([1, 2][toStringSymbol]())
+
+let stringObject = {
+    [toStringSymbol]() { return "a jute rope"}
+}
+console.log(stringObject[toStringSymbol]())
