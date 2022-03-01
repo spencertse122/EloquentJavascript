@@ -229,7 +229,7 @@ console.log('-'.repeat(10))
 // Matrix class
 
 class Matrix {
-    constructor(eidth, height, element = (x, y) => undefined) {
+    constructor(width, height, element = (x, y) => undefined) {
         this.width = width;
         this.height = height
         this.content = []
@@ -250,3 +250,41 @@ class Matrix {
     }
 }
 
+class MatrixIterator {
+    constructor(matrix) {
+        this.x = 0
+        this.y = 0
+        this.matrix = matrix
+    }
+
+    next() {
+        // Checking if the bottom of the matrix has been reached before doing anything
+        if (this.y == this.matrix.height) return {done: true}
+        
+        // then update its position
+        let value = {x: this.x,
+                     y: this.y,
+                     value: this.matrix.get(this.x, this.y)}
+        
+        // After retrieving the value, x move one index
+        this.x++
+
+        // If x is equal to the matrix's width (end of row)
+        if (this.x == this.matrix.width) {
+            this.x = 0; // reset x to 0
+            this.y++ // and then y move one (to the next row)
+        }
+        return {value, done: false} // outputing the values
+    }
+}
+
+Matrix.prototype[Symbol.iterator] = function() {
+    return new MatrixIterator(this)
+}
+
+let matrix = new Matrix(2, 2, (x, y) => `value ${x}, ${y}`);
+for (let {x, y, value} of matrix) {
+    console.log(x, y, '----->', value)
+}
+
+console.log('-'.repeat(10))
