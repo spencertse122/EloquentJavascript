@@ -288,3 +288,13 @@ for (let {x, y, value} of matrix) {
 }
 
 console.log('-'.repeat(10))
+
+let varyingSize = {
+    get size() {
+        return Math.floor(Math.random() * 100)
+    }
+}
+
+console.log(varyingSize.size)
+console.log(varyingSize.size)
+
