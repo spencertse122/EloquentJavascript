@@ -237,7 +237,7 @@ class Matrix { // taking in two variables, and a default function
         for (let y = 0; y < height; y++) { // number of rows
             for (let x = 0; x < this.width; x++) { // number of columns
                 this.content[y * width + x] = element(x, y)
-                console.log(`We are at y ${y} x ${x}`)
+                console.log(`We are at row ${y} col ${x}`)
                 console.log(this.content)
             }
             console.log('-'.repeat(3))
@@ -255,9 +255,7 @@ class Matrix { // taking in two variables, and a default function
 }
 
 
-console.log('-'.repeat(10))
 
-// Testing out the Matrix Object
 let testMatrix = new Matrix(3, 3);
 console.log(testMatrix.get(3,1))
 
@@ -265,22 +263,23 @@ console.log('-'.repeat(10))
 
 
 
-class MatrixIterator {
-    constructor(matrix) {
-        this.x = 0 // current position x (default to be 0)
-        this.y = 0 // current position y (default to be 0)
-        this.matrix = matrix
-    }
+// class MatrixIterator {
+//     constructor(matrix) {
+//         this.x = 0
+//         this.y = 0
+//         this.matrix = matrix
+//     }
 
-    next() {
-        // Checking if the bottom of the matrix has been reached before doing anything
-        if (this.y == this.matrix.height) return {done: true}
+//     next() {
+//         // Checking if the bottom of the matrix has been reached before doing anything
+//         if (this.y == this.matrix.height) return {done: true}
         
-        // then update its position
-        let value = {x: this.x,
-                     y: this.y,
-                     value: this.matrix.get(this.x, this.y)}
+//         // then update its position
+//         let value = {x: this.x,
+//                      y: this.y,
+//                      value: this.matrix.get(this.x, this.y)}
         
+<<<<<<< HEAD
         // After retrieving the value, x move one index
         this.x++
 
@@ -372,3 +371,37 @@ class SymmetricMatrix extends Matrix {
     }
 
 }
+=======
+//         // After retrieving the value, x move one index
+//         this.x++
+
+//         // If x is equal to the matrix's width (end of row)
+//         if (this.x == this.matrix.width) {
+//             this.x = 0; // reset x to 0
+//             this.y++ // and then y move one (to the next row)
+//         }
+//         return {value, done: false} // outputing the values
+//     }
+// }
+
+// Matrix.prototype[Symbol.iterator] = function() {
+//     return new MatrixIterator(this)
+// }
+
+// let matrix = new Matrix(2, 2, (x, y) => `value ${x}, ${y}`);
+// for (let {x, y, value} of matrix) {
+//     console.log(x, y, '----->', value)
+// }
+
+// console.log('-'.repeat(10))
+
+// let varyingSize = {
+//     get size() {
+//         return Math.floor(Math.random() * 100)
+//     }
+// }
+
+// console.log(varyingSize.size)
+// console.log(varyingSize.size)
+
+>>>>>>> parent of f301de0... need digging for fromFahrenheit on p.124
