@@ -372,3 +372,6 @@ class SymmetricMatrix extends Matrix { // extend means it's a sub-class of
 let Symmatrix = new SymmetricMatrix(5, (x, y) => `${x},  ${y}`);
 console.log(Symmatrix.get(2, 3))
 
+console.log('-'.repeat(10))
+
+// 
