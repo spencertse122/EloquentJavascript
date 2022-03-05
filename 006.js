@@ -343,8 +343,32 @@ console.log(temp.celsius)
 console.log(temp.fahrenheit)
 console.log(temp.celsius)
 
-let temp2 = new Temperature(22)
+// example of using a static method to create a temperature with fahrenheit
+let temp2 = Temperature.fromFahrenheit(100)
 console.log(temp2.celsius)
 
 temp2.fromFahrenheit = 100
 console.log(temp2.celsius)
+
+console.log('-'.repeat(10))
+
+// Learning inheritance
+// the prototype system will allow us to inherit the matrix class
+// into something similar with extra feature
+
+class SymmetricMatrix extends Matrix {
+    constructur(size, element = (x, y) => undefined) {
+        super(size, size, (x, y) => { //super is used to call the parent
+            if (x < y) return element(y, x);
+            else return element(x, y)
+        });
+    }
+
+    set(x, y, value) {
+        super.set(x, y, value);
+        if (x != y) {
+            super.set(y, x, value)
+        }
+    }
+
+}
