@@ -237,7 +237,7 @@ class Matrix { // taking in two variables, and a default function
         for (let y = 0; y < height; y++) { // number of rows
             for (let x = 0; x < this.width; x++) { // number of columns
                 this.content[y * width + x] = element(x, y)
-                console.log(`We are at row ${y} col ${x}`)
+                console.log(`We are at y ${y} x ${x}`)
                 console.log(this.content)
             }
             console.log('-'.repeat(3))
@@ -255,7 +255,9 @@ class Matrix { // taking in two variables, and a default function
 }
 
 
+console.log('-'.repeat(10))
 
+// Testing out the Matrix Object
 let testMatrix = new Matrix(3, 3);
 console.log(testMatrix.get(3,1))
 
@@ -263,51 +265,86 @@ console.log('-'.repeat(10))
 
 
 
-// class MatrixIterator {
-//     constructor(matrix) {
-//         this.x = 0
-//         this.y = 0
-//         this.matrix = matrix
-//     }
+class MatrixIterator {
+    constructor(matrix) {
+        this.x = 0 // current position x (default to be 0)
+        this.y = 0 // current position y (default to be 0)
+        this.matrix = matrix
+    }
 
-//     next() {
-//         // Checking if the bottom of the matrix has been reached before doing anything
-//         if (this.y == this.matrix.height) return {done: true}
+    next() {
+        // Checking if the bottom of the matrix has been reached before doing anything
+        if (this.y == this.matrix.height) return {done: true}
         
-//         // then update its position
-//         let value = {x: this.x,
-//                      y: this.y,
-//                      value: this.matrix.get(this.x, this.y)}
+        // then update its position
+        let value = {x: this.x,
+                     y: this.y,
+                     value: this.matrix.get(this.x, this.y)}
         
-//         // After retrieving the value, x move one index
-//         this.x++
+        // After retrieving the value, x move one index
+        this.x++
 
-//         // If x is equal to the matrix's width (end of row)
-//         if (this.x == this.matrix.width) {
-//             this.x = 0; // reset x to 0
-//             this.y++ // and then y move one (to the next row)
-//         }
-//         return {value, done: false} // outputing the values
-//     }
-// }
+        // If x is equal to the matrix's width (end of row)
+        if (this.x == this.matrix.width) {
+            this.x = 0; // reset x to 0
+            this.y++ // and then y move one (to the next row)
+        }
+        return {value, done: false} // outputing the values
+    }
+}
 
-// Matrix.prototype[Symbol.iterator] = function() {
-//     return new MatrixIterator(this)
-// }
+console.log('-'.repeat(10))
 
-// let matrix = new Matrix(2, 2, (x, y) => `value ${x}, ${y}`);
-// for (let {x, y, value} of matrix) {
-//     console.log(x, y, '----->', value)
-// }
+// Using the Symbol in the iterator
+Matrix.prototype[Symbol.iterator] = function() {
+    return new MatrixIterator(this)
+}
 
-// console.log('-'.repeat(10))
 
-// let varyingSize = {
-//     get size() {
-//         return Math.floor(Math.random() * 100)
-//     }
-// }
+let matrix = new Matrix(2, 2, (x, y) => `value ${x}, ${y}`);
+for (let {x, y, value} of matrix) {
+    console.log(x, y, '----->', value)
+}
 
-// console.log(varyingSize.size)
-// console.log(varyingSize.size)
+console.log('-'.repeat(10))
 
+let varyingSize = {
+    get size() {
+        return Math.floor(Math.random() * 100)
+    }
+}
+
+console.log(varyingSize.size)
+console.log(varyingSize.size)
+console.log('-'.repeat(10))
+
+// Using set and get in class
+class Temperature {
+    constructor(celsius) {
+        this.celsius = celsius
+    }
+    get fahrenheit() {
+        return this.celsius * 1.8 + 32
+    }
+    set fahrenheit(value) {
+        this.celsius = (value - 32) / 1.8
+    }
+    static fromFahrenheit(value) {
+        return new Temperature((value - 32) / 1.8)
+    }
+}
+
+let temp = new Temperature(22);
+console.log(temp.fahrenheit); // using the get fahrenheit
+
+temp.fahrenheit = 86 // using the set fahrenheit(value)
+console.log(temp.celsius)
+
+console.log(temp.fahrenheit)
+console.log(temp.celsius)
+
+let temp2 = new Temperature(22)
+console.log(temp2.celsius)
+
+temp2.fromFahrenheit = 100
+console.log(temp2.celsius)
