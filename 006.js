@@ -263,23 +263,22 @@ console.log('-'.repeat(10))
 
 
 
-// class MatrixIterator {
-//     constructor(matrix) {
-//         this.x = 0
-//         this.y = 0
-//         this.matrix = matrix
-//     }
+class MatrixIterator {
+    constructor(matrix) {
+        this.x = 0
+        this.y = 0
+        this.matrix = matrix
+    }
 
-//     next() {
-//         // Checking if the bottom of the matrix has been reached before doing anything
-//         if (this.y == this.matrix.height) return {done: true}
+    next() {
+        // Checking if the bottom of the matrix has been reached before doing anything
+        if (this.y == this.matrix.height) return {done: true}
         
-//         // then update its position
-//         let value = {x: this.x,
-//                      y: this.y,
-//                      value: this.matrix.get(this.x, this.y)}
+        // then update its position
+        let value = {x: this.x,
+                     y: this.y,
+                     value: this.matrix.get(this.x, this.y)}
         
-<<<<<<< HEAD
         // After retrieving the value, x move one index
         this.x++
 
@@ -355,53 +354,21 @@ console.log('-'.repeat(10))
 // the prototype system will allow us to inherit the matrix class
 // into something similar with extra feature
 
-class SymmetricMatrix extends Matrix {
-    constructur(size, element = (x, y) => undefined) {
-        super(size, size, (x, y) => { //super is used to call the parent
-            if (x < y) return element(y, x);
-            else return element(x, y)
-        });
+class SymmetricMatrix extends Matrix { // extend means it's a sub-class of 
+    constructor(size, element = (x, y) => undefined) { // taking one variable input when we call the classs
+    super(size, size, (x, y) => {  // but we will use super() to connect it to the parent class
+    if (x < y) return element(y, x);
+    else return element(x, y);
+    });
     }
-
     set(x, y, value) {
-        super.set(x, y, value);
-        if (x != y) {
-            super.set(y, x, value)
-        }
+    super.set(x, y, value);
+    if (x != y) {
+    super.set(y, x, value);
     }
-
+    } 
 }
-=======
-//         // After retrieving the value, x move one index
-//         this.x++
 
-//         // If x is equal to the matrix's width (end of row)
-//         if (this.x == this.matrix.width) {
-//             this.x = 0; // reset x to 0
-//             this.y++ // and then y move one (to the next row)
-//         }
-//         return {value, done: false} // outputing the values
-//     }
-// }
+let Symmatrix = new SymmetricMatrix(5, (x, y) => `${x},  ${y}`);
+console.log(Symmatrix.get(2, 3))
 
-// Matrix.prototype[Symbol.iterator] = function() {
-//     return new MatrixIterator(this)
-// }
-
-// let matrix = new Matrix(2, 2, (x, y) => `value ${x}, ${y}`);
-// for (let {x, y, value} of matrix) {
-//     console.log(x, y, '----->', value)
-// }
-
-// console.log('-'.repeat(10))
-
-// let varyingSize = {
-//     get size() {
-//         return Math.floor(Math.random() * 100)
-//     }
-// }
-
-// console.log(varyingSize.size)
-// console.log(varyingSize.size)
-
->>>>>>> parent of f301de0... need digging for fromFahrenheit on p.124
