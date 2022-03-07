@@ -361,17 +361,38 @@ class SymmetricMatrix extends Matrix { // extend means it's a sub-class of
     else return element(x, y);
     });
     }
-    set(x, y, value) {
-    super.set(x, y, value);
+    set(x, y, value) { // filling in the blank for set in SymmetricMatrix
+    super.set(x, y, value); // using the parent set 
     if (x != y) {
     super.set(y, x, value);
     }
     } 
 }
 
+// super provides a way to call methods as they were defined in the superclass
+
+// need research on polymorphism and dencapsulation
+
 let Symmatrix = new SymmetricMatrix(5, (x, y) => `${x},  ${y}`);
 console.log(Symmatrix.get(2, 3))
 
 console.log('-'.repeat(10))
 
-// 
+
+// The Instaceof operator
+console.log(
+    new SymmetricMatrix(2) instanceof SymmetricMatrix
+    );
+
+console.log('-'.repeat(10));
+
+console.log(
+    new SymmetricMatrix(2) instanceof Matrix
+    );
+
+console.log(new Matrix(2, 2) instanceof SymmetricMatrix);
+
+console.log([1] instanceof Array);
+
+// it maybe useful to use instanceof to do type checking
+
