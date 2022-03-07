@@ -395,4 +395,3 @@ console.log(new Matrix(2, 2) instanceof SymmetricMatrix);
 console.log([1] instanceof Array);
 
 // it maybe useful to use instanceof to do type checking
-
