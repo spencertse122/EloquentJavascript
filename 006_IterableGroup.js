@@ -36,10 +36,13 @@ class Group {
       return group;
     }
 
+    // this is going to connect to the iterator 
     [Symbol.iterator]() {
-        return new GroupIterator(this)
+        return new GroupIterator(this) // putting self into it
     }
-
+    // in python
+    // def __init__(self, GroupIterator):
+    //     self.GroupIterator = GroupIterator
   }
 
 
@@ -52,9 +55,9 @@ class GroupIterator {
     
     next() {
         if (this.position >= this.group.members.length) {
-            return {done: true}
+            return {done: true} // if the position has accumulated beyong the length, return nothing
         } else {
-            let result = {value: this.group.members[this.position],
+            let result = {value: this.group.members[this.position], // using the position to index out the data
                             done: false}
             this.position++
             return result
