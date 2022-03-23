@@ -134,3 +134,21 @@ function transfer2(from, amount) {
         }
     }
 }
+
+// Selective Catching
+// find problems that are expected to happen during routine use
+
+// when thereis a catch,
+// we know it's something in the try block causing it
+
+for (;;) {
+    try {
+        let dir = promptDirection("Where?");
+        console.log("You chose ". dir);
+        break;
+    } catch (e) {
+        console.log("Not a valid direction. Try again.");
+    }
+}
+
+
