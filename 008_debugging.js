@@ -141,10 +141,12 @@ function transfer2(from, amount) {
 // when thereis a catch,
 // we know it's something in the try block causing it
 
+// for(;;) a loop that doesn't stop
+// on its own
 for (;;) {
     try {
         let dir = promptDirection("Where?");
-        console.log("You chose ". dir);
+        console.log("You chose ", dir);
         break;
     } catch (e) {
         console.log("Not a valid direction. Try again.");
@@ -152,3 +154,37 @@ for (;;) {
 }
 
 
+// Error classes
+
+class InputError extends Error {}
+
+function promptDiretion(question) {
+    let result = prompt(question);
+    // in javascript return or break will
+    // terminate the function
+    if (result.toLowerCase() == "left") return "L";
+    if (result.toLowerCase() == "right") return "R";
+    throw new InputError("Invalid direction: " + result);
+}
+
+for (;;) {
+    try {
+        let dir = promptDirection("Where?");
+        console.log("You chose ", dir)
+        break;
+    // try to tun the block
+    // e is the error return from the try block???
+    } catch (e) {
+        // checking if e is an InputError
+        if (e instanceof InputError) {
+            // if it IS an input error
+            // log this
+            console.log("Not a valid direction. Try again.");
+            break
+        } else {
+            // if not an InputError
+            // raise it
+            throw e;
+        }
+    }
+}
