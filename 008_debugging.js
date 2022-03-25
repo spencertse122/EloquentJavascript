@@ -188,3 +188,16 @@ for (;;) {
         }
     }
 }
+
+// Assertions
+
+function firstElement(array) {
+    if (array.length == 0) {
+        // in python: throw new is raise
+        // here is a new error class
+        throw new Error("firstElement called with []");
+    }
+    return array[0];
+}
+
+
