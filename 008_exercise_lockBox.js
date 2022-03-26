@@ -15,3 +15,22 @@ const box = {
 let test_box = box
 
 console.log(test_box._content)
+
+console.log('-'.repeat(10))
+
+
+// real exercise code here 
+
+function withBoxUnlocked(body) {
+
+}
+
+try {
+    withBoxUnlocked(function() {
+        throw new Error("Pirates on the horizon! Abort!")
+    });
+} catch (e) {
+    console.log("Error raised: " + e);
+}
+
+console.log(box.locked);
