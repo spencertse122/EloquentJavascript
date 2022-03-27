@@ -12,17 +12,28 @@ const box = {
 };
 
 
-let test_box = box
+// let test_box = box
 
-console.log(test_box._content)
+// console.log(test_box._content)
 
-console.log('-'.repeat(10))
+// console.log('-'.repeat(10))
 
 
 // real exercise code here 
 
 function withBoxUnlocked(body) {
+    // Code here
+    let locked = box.locked;
+    if (!locked) {
+        return body();
+    }
 
+    box.unlock();
+    try {
+        return body();
+    } finally {
+        box.lock();
+    }
 }
 
 try {
