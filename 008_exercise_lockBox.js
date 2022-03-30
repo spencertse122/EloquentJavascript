@@ -13,33 +13,45 @@ const box = {
 
 
 // let test_box = box
-
 // console.log(test_box._content)
-
 // console.log('-'.repeat(10))
 
 
 // real exercise code here 
 
+// this is essentially an encryption solution
 function withBoxUnlocked(body) {
     // Code here
+    // first getting the locking status
     let locked = box.locked;
+
+    // if it's not locked
     if (!locked) {
-        return body();
+        return body(); // run the function inside
     }
 
+    // otherwise, unlock it
     box.unlock();
+
+    // then try to run the inside function
     try {
         return body();
     } finally {
-        box.lock();
+        box.lock(); //after running it,lock it again
     }
 }
 
+// Triggering the function down here
+
+let testfunc = function() {
+    // throw new Error("Pirates on the horizon! Abort!")
+    console.log("Box opened: we have got some gold!!!!!")
+}
+
+box.lock()
+
 try {
-    withBoxUnlocked(function() {
-        throw new Error("Pirates on the horizon! Abort!")
-    });
+    withBoxUnlocked(testfunc);
 } catch (e) {
     console.log("Error raised: " + e);
 }
