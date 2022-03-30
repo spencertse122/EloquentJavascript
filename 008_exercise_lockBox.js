@@ -48,12 +48,16 @@ let testfunc = function() {
     console.log("Box opened: we have got some gold!!!!!")
 }
 
+// make sure we lock the door
 box.lock()
 
+
+// utilizing the box
 try {
     withBoxUnlocked(testfunc);
 } catch (e) {
     console.log("Error raised: " + e);
 }
 
-console.log(box.locked);
+// Check to see if the box is locked
+console.log(`Box lock status: ${box.locked}`);
