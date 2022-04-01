@@ -89,7 +89,7 @@ let cartoonCrying = /boo+(hoo+)/i;
 console.log(cartoonCrying.test("Boohoooohoohooo"))
 
 console.log('-'.repeat(20))
-
+console.log("using exec")
 // exec method vs test method
 let match = /\d+/.exec("one two 100")
 console.log(`Extracting "one two 100": ${match}`)
