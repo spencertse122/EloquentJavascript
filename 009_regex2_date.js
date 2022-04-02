@@ -146,6 +146,80 @@ console.log(stripComments("1 /* a */+/* b */ 1"))
 // dynamically creating regexp objects
 let name = "harry";
 let text = "Harry is a suspicious character."
-let regexp = new RegExp("\\b(" + name + ")\\b", "gi");
+let regexp = new RegExp("\\b(" + name + ")\\b", "gi"); // g means match everything, i means non case sensitive
 console.log(text.replace(regexp, "_$1_"))
 console.log(regexp)
+console.log('-'.repeat(10))
+
+// another example
+let name2 = "dea_hl[]rd";
+let text2 = "This dea+hl[]rd guy is super annoying.";
+let escaped = name2.replace(/[\\[.+*?(){|^$]/g, "\\$&")
+let regexp2 = new RegExp("\\b" + escaped + "\\b", "gi")
+console.log(text2.replace(regexp2, "_$&_"));
+
+
+// search method
+//  \S will search for white space
+//  \W is any characters
+console.log("  word".search(/\S/))
+console.log("    ".search(/\S/));
+
+
+// refresher of indexOf
+let refreshText = "Hello world, welcome to the universe"
+let result = refreshText.indexOf("welcome")
+console.log(result)
+console.log('-'.repeat(10))
+
+
+// lastindex property
+let pattern = /y/g;
+pattern.lastIndex = 3;
+let match = pattern.exec("xyzzy");
+console.log(match.index)
+console.log(match.lastIndex)
+
+console.log('-'.repeat(10))
+
+// a global example
+let global = /abc/g;
+console.log("NON-STICKY")
+console.log(global.exec("xyz abc"));
+
+// stick will use lastIndex
+let sticky = /abc/y
+console.log("STICKY")
+console.log(sticky.exec("xyz abc"))
+console.log('-'.repeat(10))
+
+// digit automatically update lastIndex
+// and will cause issue
+// that's due to the global property
+let digit = /\d/g;
+console.log(`first use: ${digit.exec("here it is: 1")}`);
+console.log(`second use: ${digit.exec("and now: 1")}`);
+
+// another scenario
+console.log("Matching banana with an")
+console.log("Banana".match(/an/g));
+console.log('searching an in banana')
+console.log("Banana".search(/an/g))
+console.log('-'.repeat(10))
+// looping over matches
+// common practice: scan through all occurrences of a pattern
+
+let input = "A string with 3 numbers in it... 42 and 88."
+let number = /\b\d+\b/g
+let match2; // this is an undefined object
+console.log(`Using the number and match only: ${input.match(number)}`)
+console.log(`match2 starts as: ${match2}`)
+
+while (match2 = number.exec(input)) {
+    console.log(`match2 now is: ${match2}`)
+    console.log("Found", match2[0], "at", match2.index)
+}
+
+console.log('-'.repeat(10))
+
+// parsing an INI FILE
