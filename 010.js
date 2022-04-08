@@ -58,6 +58,7 @@ exports.formatDate = function(date, format) {
 
 // another usage format
 
+// this is for preventing to load the module everytime we use it
 require.cache = Object.create(null);
 
 function require(name) {
@@ -71,3 +72,6 @@ function require(name) {
     return require.cache[name].exports;
 }
 
+const {parse} = require("ini")
+
+console.log(parse("x = 10\ny = 20"))
