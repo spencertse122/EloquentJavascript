@@ -75,3 +75,13 @@ function require(name) {
 const {parse} = require("ini")
 
 console.log(parse("x = 10\ny = 20"))
+
+// ECMAScript modules
+// this is new javascript specific approach
+
+import ordinal from "ordinal";
+import {days, months} from "date-names";
+
+export function formatDate(date, format) { /* ... */ }
+
+export default ["Winter", "Spring", "Summer", "Autumn"]
