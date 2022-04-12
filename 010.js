@@ -83,11 +83,28 @@ import ordinal from "ordinal";
 import {days, months} from "date-names";
 
 export function formatDate(date, format) { /* ... */ }
-
+ 
 export default ["Winter", "Spring", "Summer", "Autumn"]
 
 
 import {days as dayNames} from "date-names";
 
 console.log(dayNames.length);
+
+// if something can be done in a funciton
+// use a function
+
+const {find_path} = require("dijkstrajs")
+
+let graph = {};
+for (let node of Object.keys(roadGraph)) {
+    let edges = graph[node] = {};
+    for (let dest of roadGraph[node]) {
+        edges[dest] = 1;
+    }
+}
+
+console.log(find_path(graph, "Post Office", "Cabin"));
+
+
 
